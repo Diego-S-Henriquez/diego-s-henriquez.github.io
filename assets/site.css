@@ -235,6 +235,9 @@ footer .label { font-size: 0.6875rem; }
 .figure { margin: 36px 0 0; }
 .figure .thumb { aspect-ratio: 16 / 9; border: 1px solid var(--line); border-radius: var(--radius); }
 .figure figcaption { margin-top: 10px; font-size: 0.875rem; color: var(--muted); }
+.figure .shot { display: block; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: #0f151b; transition: border-color 160ms ease; }
+.figure .shot:hover { border-color: var(--accent); }
+.figure .shot img { display: block; width: 100%; height: auto; }
 
 .case-body { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 56px; margin-top: 48px; }
 @media (max-width: 860px) { .case-body { grid-template-columns: 1fr; gap: 28px; } }
@@ -243,8 +246,11 @@ footer .label { font-size: 0.6875rem; }
 .spec dl { margin: 0; }
 .spec div { padding-block: 12px; border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 2px; }
 .spec dd { margin: 0; font-size: 0.9375rem; font-weight: 500; }
-.prose { display: flex; flex-direction: column; gap: 36px; max-width: 68ch; min-width: 0; }
+.prose { display: flex; flex-direction: column; gap: 36px; min-width: 0; }
 .prose section { display: flex; flex-direction: column; gap: 12px; }
+/* text keeps a readable measure; figures use the full column */
+.prose > :not(.figure):not(section), .prose section > :not(.figure) { max-width: 68ch; }
+.prose section .figure { margin: 8px 0; }
 .prose h2 { font-size: var(--step-2); font-weight: 700; }
 .prose ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 10px; }
 .prose li::marker { color: var(--muted); }
