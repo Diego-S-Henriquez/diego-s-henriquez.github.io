@@ -268,3 +268,7 @@ footer .label { font-size: 0.6875rem; }
 .pager a.next { text-align: right; grid-column: 2; }
 .pager .pager-title { font-family: var(--font-display); font-stretch: 112%; font-weight: 700; font-size: 1rem; }
 @media (max-width: 560px) { .pager { grid-template-columns: 1fr; } .pager a.next { grid-column: auto; } }
+
+/* four projects: a 2x2 grid instead of 3 + 1 */
+.projects.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 600px) { .projects.cols-2 { grid-template-columns: 1fr; } }
