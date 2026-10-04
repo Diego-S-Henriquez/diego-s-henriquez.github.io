@@ -172,6 +172,9 @@ a.card:hover { transform: translateY(-2px); border-color: var(--accent); box-sha
 .card-body .label { font-size: 0.6875rem; }
 .card-body h3 { font-size: 1.1875rem; font-weight: 700; }
 .card-body p { color: var(--muted); font-size: 0.9375rem; }
+.facts { margin: 4px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 5px; }
+.facts li { position: relative; padding-left: 14px; font-size: 0.8125rem; line-height: 1.45; color: var(--ink); }
+.facts li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 6px; height: 1.5px; background: var(--muted); }
 .card-foot { margin-top: auto; padding-top: 10px; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .tag { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.03em; padding: 3px 8px; border-radius: 3px; background: color-mix(in srgb, var(--ink) 7%, transparent); color: var(--ink); white-space: nowrap; }
@@ -309,9 +312,10 @@ footer .label { font-size: 0.6875rem; }
             </div>
           </div>
           <div class="card-body">
-            <div class="label">Course · IE 4933 · Spring 2026</div>
+            <div class="label">Course · IE 4933 · Spring 2026 · Solo</div>
             <h3>Production Throughput &amp; Bottleneck Analysis</h3>
             <p>Power BI analysis of six months of production data that found the system bottleneck and traced it to machine-fault downtime.</p>
+            <ul class="facts"><li>Drilling at 83.87% of unit target vs. about 100% elsewhere</li><li>Scrap ruled out: 1.8% vs. about 1.2% at other stations</li><li>Machine-fault downtime about 3x any other station</li></ul>
             <div class="card-foot">
               <div class="tags"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Root cause</span></div>
               <span class="status go">Read case study →</span>
@@ -322,12 +326,12 @@ footer .label { font-size: 0.6875rem; }
         <article class="card">
           <div class="thumb"><div class="pending">Image to come<br>Element breakdown / BasicMOST table</div></div>
           <div class="card-body">
-            <div class="label">Course · IE 3123 · Fall 2025</div>
+            <div class="label">Course · IE 3123 · Fall 2025 · Solo</div>
             <h3>Time Study &amp; BasicMOST Analysis</h3>
             <p>Stopwatch time study and BasicMOST analysis of a 6-element manual task, ending in a 121-second standard time.</p>
+            <ul class="facts"><li>20 cycles timed with a stopwatch</li><li>Ratings adjusted for operator effort and workplace conditions</li><li>13% allowances: 5% personal, 8% fatigue</li></ul>
             <div class="card-foot">
               <div class="tags"><span class="tag">Work measurement</span><span class="tag">BasicMOST</span><span class="tag">Excel</span></div>
-              <span class="status">Case study coming soon</span>
             </div>
           </div>
         </article>
@@ -335,12 +339,12 @@ footer .label { font-size: 0.6875rem; }
         <article class="card">
           <div class="thumb"><div class="pending">Image to come<br>Product or CNC router photo</div></div>
           <div class="card-body">
-            <div class="label">Small business · 2023–2026</div>
+            <div class="label">Small business · 2023–2026 · Owner</div>
             <h3>Emblem Premier LLC</h3>
             <p>Designed sports-themed wall art in Fusion 360 and cut it on a CNC router I built myself.</p>
+            <ul class="facts"><li>Handled CNC setup, calibration, CAM toolpaths and G-code</li><li>Sold direct through the company website</li><li>Managed production, packaging and shipping</li></ul>
             <div class="card-foot">
               <div class="tags"><span class="tag">Fusion 360</span><span class="tag">CNC</span><span class="tag">G-code</span></div>
-              <span class="status">Case study coming soon</span>
             </div>
           </div>
         </article>
@@ -348,12 +352,12 @@ footer .label { font-size: 0.6875rem; }
         <article class="card">
           <div class="thumb"><div class="pending">Image to come<br>Housing dashboard screenshot</div></div>
           <div class="card-body">
-            <div class="label">Personal project</div>
+            <div class="label">Personal project · Solo</div>
             <h3>Housing Market Trends Dashboard</h3>
             <p>Combined 6 Zillow datasets into a star-schema model and an interactive dashboard of U.S. housing trends from 2013 to 2026.</p>
+            <ul class="facts"><li>Home values, sale prices, inventory, new listings, days pending, price cuts</li><li>Star-schema model linked by shared date and metro tables</li><li>Filters by state, metro, price tier and date</li></ul>
             <div class="card-foot">
               <div class="tags"><span class="tag">Power BI</span><span class="tag">Data modeling</span></div>
-              <span class="status">Case study coming soon</span>
             </div>
           </div>
         </article>
@@ -361,12 +365,12 @@ footer .label { font-size: 0.6875rem; }
         <article class="card">
           <div class="thumb"><div class="pending">Image to come<br>Accuracy-by-category chart</div></div>
           <div class="card-body">
-            <div class="label">Course · IE 4613 · Fall 2025</div>
+            <div class="label">Course · IE 4613 · Fall 2025 · Solo</div>
             <h3>LLM Accuracy &amp; Response Time Study</h3>
             <p>Built a 400-prompt dataset across 40 topics to evaluate LLM accuracy and response time with a standardized scoring key.</p>
+            <ul class="facts"><li>400 prompts across 40 topics</li><li>Accuracy and response time scored with one standardized key</li><li>Results analyzed and visualized by category</li></ul>
             <div class="card-foot">
               <div class="tags"><span class="tag">Statistics</span><span class="tag">Data collection</span></div>
-              <span class="status">Case study coming soon</span>
             </div>
           </div>
         </article>
@@ -428,8 +432,8 @@ footer .label { font-size: 0.6875rem; }
       <a class="back" href="#projects">← All projects</a>
 
       <header class="case-head">
-        <div class="label">Course project · IE 4933 Information Systems · Spring 2026</div>
-        <h1>Production Throughput &amp; Bottleneck Analysis</h1>
+        <div class="label">Production Throughput &amp; Bottleneck Analysis · IE 4933 · Spring 2026 · Solo</div>
+        <h1>Tracing a plant's bottleneck to machine-fault downtime</h1>
         <p class="lede">A Power BI analysis of six months of production data from a fictional plant, Magnolia Manufacturing. It found which workstation was limiting output and traced the cause to machine-fault downtime, not scrap.</p>
         <div class="tags"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Data modeling</span><span class="tag">Root cause analysis</span></div>
       </header>
