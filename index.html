@@ -109,7 +109,8 @@ p { margin: 0; }
   border-bottom: 1px solid var(--line);
 }
 .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
-.brand { font-family: var(--font-display); font-stretch: 112%; font-weight: 700; font-size: var(--step-1); color: var(--ink); text-decoration: none; white-space: nowrap; }
+.brand { font-family: var(--font-display); font-stretch: 112%; font-weight: 700; font-size: var(--step-1); color: var(--ink); text-decoration: none; white-space: nowrap; transition: opacity 180ms ease, transform 180ms ease; }
+.brand.is-tucked { opacity: 0; transform: translateY(4px); pointer-events: none; }
 .nav { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
 .nav a { color: var(--ink); text-decoration: none; font-weight: 500; font-size: 0.9375rem; }
 .nav a:hover { color: var(--accent); }
@@ -269,7 +270,7 @@ footer .label { font-size: 0.6875rem; }
 <body>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="#top">Diego Henriquez</a>
+    <a class="brand is-tucked" id="brand" href="#top">Diego Henriquez</a>
     <nav class="nav" aria-label="Main">
       <a href="#projects">Projects</a>
       <a href="#about" class="hide-sm">About</a>
@@ -281,7 +282,7 @@ footer .label { font-size: 0.6875rem; }
 <main id="home">
   <div class="intro" id="top">
     <div class="wrap">
-      <h1>Diego Henriquez</h1>
+      <h1 id="name-h">Diego Henriquez</h1>
       <p class="lede">Industrial &amp; Systems Engineering student at Mississippi State (Data Analytics, Dec 2027). Seeking Summer 2027 internships and Spring 2027 co-ops.</p>
     </div>
   </div>
@@ -550,8 +551,27 @@ footer .label { font-size: 0.6875rem; }
       }
     }
   }
-  window.addEventListener('hashchange', route);
+  var brand = document.getElementById('brand');
+  var nameH = document.getElementById('name-h');
+  var nameVisible = true;
+  function syncBrand() {
+    var onCase = !caseView.hidden;
+    brand.classList.toggle('is-tucked', !onCase && nameVisible);
+    brand.setAttribute('aria-hidden', (!onCase && nameVisible) ? 'true' : 'false');
+    brand.tabIndex = (!onCase && nameVisible) ? -1 : 0;
+  }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      nameVisible = entries[0].isIntersecting;
+      syncBrand();
+    }, { rootMargin: '-60px 0px 0px 0px' }).observe(nameH);
+  } else {
+    nameVisible = false;
+  }
+
+  window.addEventListener('hashchange', function () { route(); syncBrand(); });
   route();
+  syncBrand();
 
   var btn = document.getElementById('copy-email');
   var addr = document.getElementById('email-addr');
