@@ -3,272 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Diego Henriquez | Industrial &amp; Systems Engineering Portfolio</title>
 <meta name="description" content="Portfolio of Diego Henriquez, an Industrial &amp; Systems Engineering student at Mississippi State University focused on data analytics and process improvement.">
 <meta property="og:title" content="Diego Henriquez | Industrial &amp; Systems Engineering Portfolio">
-<meta property="og:description" content="Projects in data analytics, process improvement, and manufacturing by Diego Henriquez, ISE student at Mississippi State University.">
-<title>Diego Henriquez | Industrial &amp; Systems Engineering Portfolio</title>
+<meta property="og:description" content="Portfolio of Diego Henriquez, an Industrial &amp; Systems Engineering student at Mississippi State University focused on data analytics and process improvement.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
-<style>
-/* Layout: drafting-sheet portfolio. Hero with an engineering title block, a 3x2 project grid,
-   and a case-study view whose left column reads like a drawing's spec column. */
-:root {
-  --paper: #f3f5f6;
-  --surface: #ffffff;
-  --ink: #15202a;
-  --muted: #56636f;
-  --line: #d3dae0;
-  --grid: rgba(21, 32, 42, 0.07);
-  --accent: #1f55a1;
-  --accent-ink: #ffffff;
-  --signal: #b87400;
-  --signal-soft: rgba(184, 116, 0, 0.12);
-
-  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
-  --font-body: "IBM Plex Sans", "Segoe UI", Roboto, Arial, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-
-  --step--1: 0.8125rem;
-  --step-0: 1rem;
-  --step-1: 1.1875rem;
-  --step-2: 1.5rem;
-  --step-3: 2rem;
-  --step-4: clamp(2.5rem, 7vw, 4.75rem);
-
-  --radius: 6px;
-  --wrap: 1120px;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper: #0f151b;
-    --surface: #151d25;
-    --ink: #e5eaee;
-    --muted: #9aa7b2;
-    --line: #2a3641;
-    --grid: rgba(229, 234, 238, 0.06);
-    --accent: #86abe6;
-    --accent-ink: #0f151b;
-    --signal: #f0b443;
-    --signal-soft: rgba(240, 180, 67, 0.14);
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --paper: #0f151b;
-  --surface: #151d25;
-  --ink: #e5eaee;
-  --muted: #9aa7b2;
-  --line: #2a3641;
-  --grid: rgba(229, 234, 238, 0.06);
-  --accent: #86abe6;
-  --accent-ink: #0f151b;
-  --signal: #f0b443;
-  --signal-soft: rgba(240, 180, 67, 0.14);
-  color-scheme: dark;
-}
-
-* { box-sizing: border-box; }
-img { max-width: 100%; }
-[hidden] { display: none !important; }
-html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
-
-body {
-  margin: 0;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--font-body);
-  font-size: var(--step-0);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
-a { color: var(--accent); text-underline-offset: 3px; }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
-h1, h2, h3 { font-family: var(--font-display); font-stretch: 112%; line-height: 1.1; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
-p { margin: 0; }
-
-.wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: 20px; }
-.label {
-  font-family: var(--font-mono);
-  font-size: var(--step--1);
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-/* ---------- header ---------- */
-.site-header {
-  position: sticky;
-  top: env(safe-area-inset-top, 0px);
-  z-index: 10;
-  background: color-mix(in srgb, var(--paper) 88%, transparent);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--line);
-}
-.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
-.brand { font-family: var(--font-display); font-stretch: 112%; font-weight: 700; font-size: var(--step-1); color: var(--ink); text-decoration: none; white-space: nowrap; transition: opacity 180ms ease, transform 180ms ease; }
-.brand.is-tucked { opacity: 0; transform: translateY(4px); pointer-events: none; }
-.nav { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
-.nav a { color: var(--ink); text-decoration: none; font-weight: 500; font-size: 0.9375rem; }
-.nav a:hover { color: var(--accent); }
-.nav .nav-cta { color: var(--accent-ink); background: var(--accent); padding: 7px 14px; border-radius: var(--radius); }
-.nav .nav-cta:hover { color: var(--accent-ink); filter: brightness(1.08); }
-@media (max-width: 560px) { .nav .hide-sm { display: none; } .nav { gap: 14px; } }
-
-/* ---------- compact intro ---------- */
-.intro { padding-block: 36px 8px; }
-.intro h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; font-stretch: 118%; }
-.lede { margin-top: 10px; font-size: var(--step-1); color: var(--muted); max-width: 62ch; }
-
-/* ---------- sections ---------- */
-section.block { padding-block: 56px; border-top: 1px solid var(--line); }
-section.block.first { padding-top: 28px; border-top: 0; }
-section.block.compact { padding-block: 40px; }
-section.block.compact h2 { font-size: var(--step-2); }
-.section-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
-.section-head h2 { font-size: var(--step-3); font-weight: 700; }
-.section-head p { color: var(--muted); max-width: 52ch; }
-
-/* ---------- projects ---------- */
-.projects { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-@media (max-width: 960px) { .projects { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 600px) { .projects { grid-template-columns: 1fr; } }
-
-.card {
-  display: flex; flex-direction: column;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  overflow: hidden;
-  color: var(--ink);
-  text-decoration: none;
-  min-width: 0;
-}
-a.card { transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease; }
-a.card:hover { transform: translateY(-2px); border-color: var(--accent); box-shadow: 0 8px 24px -16px color-mix(in srgb, var(--ink) 60%, transparent); }
-.thumb {
-  position: relative;
-  aspect-ratio: 3 / 2;
-  max-width: 100%;
-  border-bottom: 1px solid var(--line);
-  background-color: var(--paper);
-  background-image:
-    linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 16px 16px;
-  display: flex; align-items: center; justify-content: center;
-  padding: 16px;
-}
-.thumb .pending {
-  font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted);
-  text-align: center; line-height: 1.5;
-  border: 1px dashed var(--line); background: var(--surface);
-  padding: 8px 12px; border-radius: 4px; max-width: 90%;
-}
-.card-body { display: flex; flex-direction: column; gap: 8px; padding: 18px 18px 20px; flex: 1; }
-.card-body .label { font-size: 0.6875rem; }
-.card-body h3 { font-size: 1.1875rem; font-weight: 700; }
-.card-body p { color: var(--muted); font-size: 0.9375rem; }
-.facts { margin: 4px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 5px; }
-.facts li { position: relative; padding-left: 14px; font-size: 0.8125rem; line-height: 1.45; color: var(--ink); }
-.facts li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 6px; height: 1.5px; background: var(--muted); }
-.card-foot { margin-top: auto; padding-top: 10px; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
-.tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.tag { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.03em; padding: 3px 8px; border-radius: 3px; background: color-mix(in srgb, var(--ink) 7%, transparent); color: var(--ink); white-space: nowrap; }
-.status { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--muted); white-space: nowrap; }
-.status.go { color: var(--accent); font-weight: 500; }
-.tag.wip { background: var(--signal-soft); color: var(--signal); }
-
-/* six-station flow used as the bottleneck thumbnail and in the case study */
-.flow { display: flex; align-items: stretch; gap: 4px; width: 100%; }
-.station {
-  flex: 1 1 0; min-width: 0;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
-  padding: 10px 2px; border: 1px solid var(--line); background: var(--surface); border-radius: 3px;
-  font-family: var(--font-mono); font-size: 0.5625rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted);
-  text-align: center;
-}
-.station .bar { width: 60%; height: 3px; background: var(--muted); opacity: 0.45; border-radius: 2px; }
-.station.constraint { border-color: var(--signal); background: var(--signal-soft); color: var(--signal); font-weight: 500; }
-.station.constraint .bar { background: var(--signal); opacity: 1; width: 50%; }
-.flow-wrap { width: 100%; display: flex; flex-direction: column; gap: 10px; }
-.flow-caption { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--muted); text-align: center; }
-.flow-caption b { color: var(--signal); font-weight: 500; }
-
-/* ---------- about ---------- */
-.about-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 48px; }
-@media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; gap: 36px; } }
-.about-copy { display: flex; flex-direction: column; gap: 12px; max-width: 62ch; }
-.about-copy p { color: var(--muted); font-size: 0.9375rem; }
-.about-copy h2 { font-weight: 700; }
-.skills { margin: 0; display: grid; border-top: 1.5px solid var(--ink); }
-.skills > div { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 16px; padding-block: 9px; border-bottom: 1px solid var(--line); }
-.skills dt { margin: 0; }
-.skills dd { margin: 0; font-size: 0.9375rem; }
-@media (max-width: 520px) { .skills > div { grid-template-columns: 1fr; gap: 4px; } }
-
-/* ---------- contact ---------- */
-.contact { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 40px; align-items: center; }
-@media (max-width: 860px) { .contact { grid-template-columns: 1fr; gap: 24px; } }
-.contact h2 { font-weight: 700; margin-bottom: 8px; }
-.contact p { color: var(--muted); max-width: 52ch; }
-.email-box { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
-.email-line { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-.email-addr { font-family: var(--font-mono); font-size: 1.0625rem; color: var(--ink); user-select: all; overflow-wrap: anywhere; }
-.copy-btn { font: inherit; font-size: 0.8125rem; font-weight: 600; color: var(--accent); background: transparent; border: 1px solid var(--accent); border-radius: var(--radius); padding: 6px 12px; cursor: pointer; }
-.copy-btn:hover { background: color-mix(in srgb, var(--accent) 8%, transparent); }
-.contact-links { display: flex; gap: 18px; flex-wrap: wrap; font-weight: 600; font-size: 0.9375rem; }
-
-footer { border-top: 1px solid var(--line); padding-block: 28px; }
-footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-footer .label { font-size: 0.6875rem; }
-
-/* ---------- case study ---------- */
-.case { padding-block: 40px 72px; }
-.back { display: inline-flex; gap: 6px; font-weight: 600; font-size: 0.9375rem; text-decoration: none; }
-.case-head { margin-top: 28px; max-width: 860px; }
-.case-head h1 { font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 800; margin-block: 12px 18px; }
-.case-head .lede { max-width: 64ch; }
-.case-head .tags { margin-top: 18px; }
-
-.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 40px; border: 1.5px solid var(--ink); background: var(--surface); }
-.stat { padding: 18px 18px 20px; border-left: 1px solid var(--line); display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-.stat:first-child { border-left: 0; }
-.stat .num { font-family: var(--font-display); font-stretch: 112%; font-weight: 800; font-size: 2.25rem; line-height: 1; font-variant-numeric: tabular-nums; }
-.stat.hot .num { color: var(--signal); }
-.stat p { font-size: 0.875rem; color: var(--muted); }
-@media (max-width: 860px) {
-  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .stat:nth-child(3) { border-left: 0; }
-  .stat:nth-child(n+3) { border-top: 1px solid var(--line); }
-}
-@media (max-width: 420px) {
-  .stats { grid-template-columns: 1fr; }
-  .stat { border-left: 0; }
-  .stat:nth-child(n+2) { border-top: 1px solid var(--line); }
-}
-
-.figure { margin: 40px 0 0; }
-.figure .thumb { aspect-ratio: 16 / 9; border: 1px solid var(--line); border-radius: var(--radius); }
-.figure figcaption { margin-top: 10px; font-size: 0.875rem; color: var(--muted); }
-
-.case-body { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 56px; margin-top: 56px; }
-@media (max-width: 860px) { .case-body { grid-template-columns: 1fr; gap: 32px; } }
-.spec { align-self: start; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 84px); border-top: 1.5px solid var(--ink); }
-@media (max-width: 860px) { .spec { position: static; } }
-.spec div { padding-block: 12px; border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 2px; }
-.spec dd { margin: 0; font-size: 0.9375rem; font-weight: 500; }
-.spec dl { margin: 0; }
-.prose { display: flex; flex-direction: column; gap: 40px; max-width: 68ch; }
-.prose section { display: flex; flex-direction: column; gap: 12px; }
-.prose h2 { font-size: var(--step-2); font-weight: 700; }
-.prose ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 10px; }
-.prose li::marker { color: var(--muted); }
-.takeaway { border-left: 3px solid var(--signal); padding: 4px 0 4px 18px; font-size: var(--step-1); }
-</style>
+<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
 <header class="site-header">
@@ -281,7 +23,6 @@ footer .label { font-size: 0.6875rem; }
     </nav>
   </div>
 </header>
-
 <main id="home">
   <div class="intro" id="top">
     <div class="wrap">
@@ -295,22 +36,9 @@ footer .label { font-size: 0.6875rem; }
       <div class="section-head">
         <h2 id="projects-h">Projects</h2>
       </div>
-
       <div class="projects">
-        <a class="card" href="#bottleneck">
-          <div class="thumb">
-            <div class="flow-wrap" aria-hidden="true">
-              <div class="flow">
-                <div class="station"><span class="bar"></span>Cut</div>
-                <div class="station"><span class="bar"></span>Deburr</div>
-                <div class="station constraint"><span class="bar"></span>Drill</div>
-                <div class="station"><span class="bar"></span>Finish</div>
-                <div class="station"><span class="bar"></span>Inspect</div>
-                <div class="station"><span class="bar"></span>Pack</div>
-              </div>
-              <div class="flow-caption">Constraint: <b>Drilling at 83.87% of target</b></div>
-            </div>
-          </div>
+        <a class="card" href="/projects/bottleneck-analysis/">
+          <div class="thumb"><div class="flow-wrap" aria-hidden="true"><div class="flow"><div class="station"><span class="bar"></span>Cut</div><div class="station"><span class="bar"></span>Deburr</div><div class="station constraint"><span class="bar"></span>Drill</div><div class="station"><span class="bar"></span>Finish</div><div class="station"><span class="bar"></span>Inspect</div><div class="station"><span class="bar"></span>Pack</div></div><div class="flow-caption">Constraint: <b>Drilling at 83.87% of target</b></div></div></div>
           <div class="card-body">
             <div class="label">Course · IE 4933 · Spring 2026 · Solo</div>
             <h3>Production Throughput &amp; Bottleneck Analysis</h3>
@@ -318,12 +46,11 @@ footer .label { font-size: 0.6875rem; }
             <ul class="facts"><li>Drilling at 83.87% of unit target vs. about 100% elsewhere</li><li>Scrap ruled out: 1.8% vs. about 1.2% at other stations</li><li>Machine-fault downtime about 3x any other station</li></ul>
             <div class="card-foot">
               <div class="tags"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Root cause</span></div>
-              <span class="status go">Read case study →</span>
+              <span class="status">Read case study →</span>
             </div>
           </div>
         </a>
-
-        <article class="card">
+        <a class="card" href="/projects/time-study/">
           <div class="thumb"><div class="pending">Image to come<br>Element breakdown / BasicMOST table</div></div>
           <div class="card-body">
             <div class="label">Course · IE 3123 · Fall 2025 · Solo</div>
@@ -332,11 +59,11 @@ footer .label { font-size: 0.6875rem; }
             <ul class="facts"><li>20 cycles timed with a stopwatch</li><li>Ratings adjusted for operator effort and workplace conditions</li><li>13% allowances: 5% personal, 8% fatigue</li></ul>
             <div class="card-foot">
               <div class="tags"><span class="tag">Work measurement</span><span class="tag">BasicMOST</span><span class="tag">Excel</span></div>
+              <span class="status">Read case study →</span>
             </div>
           </div>
-        </article>
-
-        <article class="card">
+        </a>
+        <a class="card" href="/projects/emblem-premier/">
           <div class="thumb"><div class="pending">Image to come<br>Product or CNC router photo</div></div>
           <div class="card-body">
             <div class="label">Small business · 2023–2026 · Owner</div>
@@ -345,11 +72,11 @@ footer .label { font-size: 0.6875rem; }
             <ul class="facts"><li>Handled CNC setup, calibration, CAM toolpaths and G-code</li><li>Sold direct through the company website</li><li>Managed production, packaging and shipping</li></ul>
             <div class="card-foot">
               <div class="tags"><span class="tag">Fusion 360</span><span class="tag">CNC</span><span class="tag">G-code</span></div>
+              <span class="status">Read case study →</span>
             </div>
           </div>
-        </article>
-
-        <article class="card">
+        </a>
+        <a class="card" href="/projects/housing-dashboard/">
           <div class="thumb"><div class="pending">Image to come<br>Housing dashboard screenshot</div></div>
           <div class="card-body">
             <div class="label">Personal project · Solo</div>
@@ -358,11 +85,11 @@ footer .label { font-size: 0.6875rem; }
             <ul class="facts"><li>Home values, sale prices, inventory, new listings, days pending, price cuts</li><li>Star-schema model linked by shared date and metro tables</li><li>Filters by state, metro, price tier and date</li></ul>
             <div class="card-foot">
               <div class="tags"><span class="tag">Power BI</span><span class="tag">Data modeling</span></div>
+              <span class="status">Read case study →</span>
             </div>
           </div>
-        </article>
-
-        <article class="card">
+        </a>
+        <a class="card" href="/projects/llm-study/">
           <div class="thumb"><div class="pending">Image to come<br>Accuracy-by-category chart</div></div>
           <div class="card-body">
             <div class="label">Course · IE 4613 · Fall 2025 · Solo</div>
@@ -371,21 +98,23 @@ footer .label { font-size: 0.6875rem; }
             <ul class="facts"><li>400 prompts across 40 topics</li><li>Accuracy and response time scored with one standardized key</li><li>Results analyzed and visualized by category</li></ul>
             <div class="card-foot">
               <div class="tags"><span class="tag">Statistics</span><span class="tag">Data collection</span></div>
+              <span class="status">Read case study →</span>
             </div>
           </div>
-        </article>
-
-        <article class="card">
+        </a>
+        <a class="card" href="/projects/self-balancing-cube/">
           <div class="thumb"><div class="pending">Image to come<br>Build photo or CAD render</div></div>
           <div class="card-body">
-            <div class="label">Personal build</div>
+            <div class="label">Personal build · In progress</div>
             <h3>Self-Balancing Cube</h3>
-            <p>A self-balancing cube I'm designing and building. A build log will follow as it comes together.</p>
+            <p>A self-balancing cube I'm designing and building. The build log will grow as it comes together.</p>
+            
             <div class="card-foot">
               <div class="tags"><span class="tag">Hardware</span><span class="tag wip">In progress</span></div>
+              <span class="status">Build log →</span>
             </div>
           </div>
-        </article>
+        </a>
       </div>
     </div>
   </section>
@@ -425,178 +154,12 @@ footer .label { font-size: 0.6875rem; }
     </div>
   </section>
 </main>
-
-<main id="bottleneck-view" hidden>
-  <article class="case">
-    <div class="wrap">
-      <a class="back" href="#projects">← All projects</a>
-
-      <header class="case-head">
-        <div class="label">Production Throughput &amp; Bottleneck Analysis · IE 4933 · Spring 2026 · Solo</div>
-        <h1>Tracing a plant's bottleneck to machine-fault downtime</h1>
-        <p class="lede">A Power BI analysis of six months of production data from a fictional plant, Magnolia Manufacturing. It found which workstation was limiting output and traced the cause to machine-fault downtime, not scrap.</p>
-        <div class="tags"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Data modeling</span><span class="tag">Root cause analysis</span></div>
-      </header>
-
-      <div class="stats">
-        <div class="stat hot"><span class="num">83.87%</span><p>Drilling's unit target attainment, vs. about 100% at every other workstation</p></div>
-        <div class="stat hot"><span class="num">22.98%</span><p>Drilling downtime, vs. 15.61% at the next-highest station</p></div>
-        <div class="stat"><span class="num">~3×</span><p>Drilling's machine-fault downtime compared with any other station</p></div>
-        <div class="stat"><span class="num">1.8%</span><p>Drilling scrap rate, vs. about 1.2% elsewhere: too small to explain the gap</p></div>
-      </div>
-
-      <figure class="figure">
-        <div class="thumb"><div class="pending">Image to come<br>Power BI dashboard, all workstations</div></div>
-        <figcaption>The one-page dashboard. Slicers for shift and workstation update every KPI card and chart.</figcaption>
-      </figure>
-
-      <div class="case-body">
-        <aside class="spec" aria-label="Project details">
-          <dl>
-            <div><dt class="label">Role</dt><dd>Solo analyst</dd></div>
-            <div><dt class="label">Course</dt><dd>IE 4933 Information Systems, Mississippi State</dd></div>
-            <div><dt class="label">Tools</dt><dd>Power BI, DAX</dd></div>
-            <div><dt class="label">Data</dt><dd>5 CSV files, Sep 2025 – Feb 2026</dd></div>
-            <div><dt class="label">Result</dt><dd>Drilling identified as the constraint; maintenance plan recommended</dd></div>
-          </dl>
-        </aside>
-
-        <div class="prose">
-          <section>
-            <h2>The problem</h2>
-            <p>The plant was missing its output targets. My goal was to find which part of the production system was limiting throughput and recommend what plant leadership should do about it.</p>
-          </section>
-
-          <section>
-            <h2>Data &amp; tools</h2>
-            <p>Five raw CSV files covering September 2025 to February 2026: production, labor, downtime, shift, and workstation data for six workstations. I cleaned them and built a relational data model in Power BI, plus a Date table.</p>
-            <div class="flow-wrap" aria-label="The six workstations in order, with Drilling as the constraint">
-              <div class="flow">
-                <div class="station"><span class="bar"></span>Cutting</div>
-                <div class="station"><span class="bar"></span>Deburr</div>
-                <div class="station constraint"><span class="bar"></span>Drilling</div>
-                <div class="station"><span class="bar"></span>Finishing</div>
-                <div class="station"><span class="bar"></span>Inspection</div>
-                <div class="station"><span class="bar"></span>Packaging</div>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <h2>What I did</h2>
-            <ul>
-              <li>Wrote DAX measures for Unit Target %, Gross Attainment Rate, Scrap Rate, Units per Labor Hour, Downtime % by Workstation, and Total Downtime.</li>
-              <li>Built a one-page interactive dashboard with KPI cards, workstation performance vs. downtime, a monthly target trend, downtime by category, and a shift comparison.</li>
-              <li>Wrote a one-page executive summary with findings and recommendations for plant leadership.</li>
-            </ul>
-          </section>
-
-          <figure class="figure">
-            <div class="thumb"><div class="pending">Image to come<br>Workstation Performance and Downtime by Category, side by side</div></div>
-            <figcaption>Target attainment and downtime by workstation, read together.</figcaption>
-          </figure>
-
-          <section>
-            <h2>Findings</h2>
-            <ul>
-              <li>Drilling was the bottleneck, reaching 83.87% of its unit target while every other workstation was near 100%. The gap held across day and night shifts for all six months, so it was systemic, not a one-time disruption.</li>
-              <li>Drilling also had the lowest productivity, at 13.19 units per labor hour.</li>
-              <li>Scrap was ruled out: 1.8% at Drilling vs. about 1.2% elsewhere is far too small to explain the gap.</li>
-              <li>The root cause was downtime. Drilling was down 22.98% of the time, compared with 15.61% at Inspection, the next highest. Machine faults were the leading cause, at about three times the machine-fault downtime of any other station, and material shortages were also more frequent.</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2>Recommendations</h2>
-            <ul>
-              <li>Start a preventive maintenance program for the Drilling equipment.</li>
-              <li>Run a formal inspection to decide between repairing and replacing it.</li>
-              <li>Improve material availability at Drilling to cut shortage downtime.</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2>What I learned</h2>
-            <p class="takeaway">Test the obvious explanation before acting on it. Drilling had the highest scrap rate, which made quality the easy guess, but the numbers pointed to availability instead.</p>
-          </section>
-        </div>
-      </div>
-    </div>
-  </article>
-</main>
-
 <footer>
   <div class="wrap">
     <span class="label">Diego Henriquez · Industrial &amp; Systems Engineering</span>
     <a class="label" href="https://www.linkedin.com/in/diego-s-henriquez" target="_blank" rel="noopener">LinkedIn ↗</a>
   </div>
 </footer>
-
-<script>
-(function () {
-  var home = document.getElementById('home');
-  var caseView = document.getElementById('bottleneck-view');
-
-  function route() {
-    var hash = (location.hash || '').replace('#', '');
-    if (hash === 'bottleneck') {
-      home.hidden = true;
-      caseView.hidden = false;
-      window.scrollTo(0, 0);
-      document.title = 'Bottleneck Analysis · Diego Henriquez';
-    } else {
-      caseView.hidden = true;
-      home.hidden = false;
-      document.title = 'Diego Henriquez | Industrial & Systems Engineering Portfolio';
-      if (hash) {
-        var target = document.getElementById(hash);
-        if (target) requestAnimationFrame(function () { target.scrollIntoView(); });
-      }
-    }
-  }
-  var brand = document.getElementById('brand');
-  var nameH = document.getElementById('name-h');
-  var nameVisible = true;
-  function syncBrand() {
-    var onCase = !caseView.hidden;
-    brand.classList.toggle('is-tucked', !onCase && nameVisible);
-    brand.setAttribute('aria-hidden', (!onCase && nameVisible) ? 'true' : 'false');
-    brand.tabIndex = (!onCase && nameVisible) ? -1 : 0;
-  }
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(function (entries) {
-      nameVisible = entries[0].isIntersecting;
-      syncBrand();
-    }, { rootMargin: '-60px 0px 0px 0px' }).observe(nameH);
-  } else {
-    nameVisible = false;
-  }
-
-  window.addEventListener('hashchange', function () { route(); syncBrand(); });
-  route();
-  syncBrand();
-
-  var btn = document.getElementById('copy-email');
-  var addr = document.getElementById('email-addr');
-  btn.addEventListener('click', function () {
-    var text = addr.textContent.trim();
-    function selectFallback() {
-      var range = document.createRange();
-      range.selectNodeContents(addr);
-      var sel = window.getSelection();
-      sel.removeAllRanges();
-      sel.addRange(range);
-      btn.textContent = 'Selected';
-    }
-    try {
-      navigator.clipboard.writeText(text).then(function () {
-        btn.textContent = 'Copied';
-        setTimeout(function () { btn.textContent = 'Copy'; }, 1800);
-      }, selectFallback);
-    } catch (e) { selectFallback(); }
-  });
-})();
-</script>
-
+<script src="/assets/site.js"></script>
 </body>
 </html>
