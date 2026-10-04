@@ -117,44 +117,36 @@ p { margin: 0; }
 .nav .nav-cta:hover { color: var(--accent-ink); filter: brightness(1.08); }
 @media (max-width: 560px) { .nav .hide-sm { display: none; } .nav { gap: 14px; } }
 
-/* ---------- hero ---------- */
-.hero { padding-block: 72px 56px; }
-.hero-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 48px; align-items: end; }
-.hero h1 { font-size: var(--step-4); font-weight: 800; font-stretch: 118%; margin-block: 14px 20px; }
-.lede { font-size: var(--step-1); color: var(--muted); max-width: 58ch; }
-.lede strong { color: var(--ink); font-weight: 600; }
-.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-.btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-weight: 600; font-size: 0.9375rem; text-decoration: none;
-  padding: 11px 18px; border-radius: var(--radius);
-  border: 1px solid var(--accent);
+/* ---------- compact intro ---------- */
+.intro { padding-block: 40px 28px; }
+.intro-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 32px; }
+.intro h1 { font-size: clamp(2.25rem, 5.5vw, 3.5rem); font-weight: 800; font-stretch: 118%; }
+.lede { font-size: var(--step-1); color: var(--muted); max-width: 46ch; }
+.title-strip {
+  margin: 24px 0 0;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1.5px solid var(--ink); background: var(--surface);
 }
-.btn-primary { background: var(--accent); color: var(--accent-ink); }
-.btn-primary:hover { filter: brightness(1.08); }
-.btn-ghost { color: var(--accent); background: transparent; }
-.btn-ghost:hover { background: color-mix(in srgb, var(--accent) 8%, transparent); }
-
-/* engineering drawing title block */
-.title-block {
-  border: 1.5px solid var(--ink);
-  background: var(--surface);
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-}
-.title-block .tb-row { display: grid; grid-template-columns: 104px minmax(0, 1fr); border-top: 1px solid var(--line); }
-.title-block .tb-row:first-child { border-top: 0; }
-.title-block .tb-key { padding: 9px 10px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.6875rem; border-right: 1px solid var(--line); display: flex; align-items: center; }
-.title-block .tb-val { padding: 9px 12px; color: var(--ink); font-family: var(--font-body); font-size: 0.9375rem; font-weight: 500; }
-.title-block .tb-head { display: flex; justify-content: space-between; gap: 12px; padding: 8px 12px; background: var(--ink); color: var(--paper); letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.6875rem; }
-
+.title-strip > div { padding: 10px 14px 12px; border-left: 1px solid var(--line); display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.title-strip > div:first-child { border-left: 0; }
+.title-strip dt { font-size: 0.6875rem; }
+.title-strip dd { margin: 0; font-size: 0.9375rem; font-weight: 500; }
 @media (max-width: 860px) {
-  .hero { padding-block: 48px 40px; }
-  .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+  .title-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .title-strip > div:nth-child(3) { border-left: 0; }
+  .title-strip > div:nth-child(n+3) { border-top: 1px solid var(--line); }
+}
+@media (max-width: 420px) {
+  .title-strip { grid-template-columns: 1fr; }
+  .title-strip > div { border-left: 0; }
+  .title-strip > div:nth-child(n+2) { border-top: 1px solid var(--line); }
 }
 
 /* ---------- sections ---------- */
-section.block { padding-block: 64px; border-top: 1px solid var(--line); }
+section.block { padding-block: 56px; border-top: 1px solid var(--line); }
+section.block.first { padding-top: 28px; border-top: 0; }
+section.block.compact { padding-block: 40px; }
+section.block.compact h2 { font-size: var(--step-2); }
 .section-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
 .section-head h2 { font-size: var(--step-3); font-weight: 700; }
 .section-head p { color: var(--muted); max-width: 52ch; }
@@ -223,22 +215,23 @@ a.card:hover { transform: translateY(-2px); border-color: var(--accent); box-sha
 .flow-caption b { color: var(--signal); font-weight: 500; }
 
 /* ---------- about ---------- */
-.about-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; }
+.about-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 48px; }
 @media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; gap: 36px; } }
-.about-copy { display: flex; flex-direction: column; gap: 16px; max-width: 62ch; }
-.about-copy h2 { font-size: var(--step-3); font-weight: 700; margin-bottom: 4px; }
+.about-copy { display: flex; flex-direction: column; gap: 12px; max-width: 62ch; }
+.about-copy p { color: var(--muted); font-size: 0.9375rem; }
+.about-copy h2 { font-weight: 700; }
 .skills { margin: 0; display: grid; border-top: 1.5px solid var(--ink); }
-.skills > div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; padding-block: 14px; border-bottom: 1px solid var(--line); }
+.skills > div { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 16px; padding-block: 9px; border-bottom: 1px solid var(--line); }
 .skills dt { margin: 0; }
 .skills dd { margin: 0; font-size: 0.9375rem; }
 @media (max-width: 520px) { .skills > div { grid-template-columns: 1fr; gap: 4px; } }
 
 /* ---------- contact ---------- */
-.contact { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 40px; align-items: end; }
+.contact { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 40px; align-items: center; }
 @media (max-width: 860px) { .contact { grid-template-columns: 1fr; gap: 24px; } }
-.contact h2 { font-size: var(--step-3); font-weight: 700; margin-bottom: 14px; }
+.contact h2 { font-weight: 700; margin-bottom: 8px; }
 .contact p { color: var(--muted); max-width: 52ch; }
-.email-box { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.email-box { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
 .email-line { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .email-addr { font-family: var(--font-mono); font-size: 1.0625rem; color: var(--ink); user-select: all; overflow-wrap: anywhere; }
 .copy-btn { font: inherit; font-size: 0.8125rem; font-weight: 600; color: var(--accent); background: transparent; border: 1px solid var(--accent); border-radius: var(--radius); padding: 6px 12px; cursor: pointer; }
@@ -306,35 +299,26 @@ footer .label { font-size: 0.6875rem; }
 </header>
 
 <main id="home">
-  <div class="hero" id="top">
-    <div class="wrap hero-grid">
-      <div>
-        <div class="label">Industrial &amp; Systems Engineering · Mississippi State University</div>
+  <div class="intro" id="top">
+    <div class="wrap">
+      <div class="intro-head">
         <h1>Diego Henriquez</h1>
-        <p class="lede">I use data to find where a system is losing time and output, and what to do about it. I'm looking for <strong>Summer 2027 internships</strong> and <strong>Spring 2027 co-ops</strong> in industrial engineering, process improvement, quality, supply chain, and data analytics.</p>
-        <div class="actions">
-          <a class="btn btn-primary" href="#projects">View my projects</a>
-          <a class="btn btn-ghost" href="#contact">Get in touch</a>
-        </div>
+        <p class="lede">I use data to find where a system is losing time and output, and what to do about it.</p>
       </div>
-
-      <div class="title-block" aria-label="Summary">
-        <div class="tb-head"><span>Title block</span><span>Rev. Oct 2026</span></div>
-        <div class="tb-row"><div class="tb-key">Program</div><div class="tb-val">B.S. Industrial &amp; Systems Engineering</div></div>
-        <div class="tb-row"><div class="tb-key">Focus</div><div class="tb-val">Data Analytics</div></div>
-        <div class="tb-row"><div class="tb-key">Graduates</div><div class="tb-val">December 2027</div></div>
-        <div class="tb-row"><div class="tb-key">Seeking</div><div class="tb-val">Summer 2027 internship · Spring 2027 co-op</div></div>
-        <div class="tb-row"><div class="tb-key">Location</div><div class="tb-val">Open to relocating anywhere in the U.S.</div></div>
-        <div class="tb-row"><div class="tb-key">Languages</div><div class="tb-val">English, Spanish</div></div>
-      </div>
+      <dl class="title-strip" aria-label="Summary">
+        <div><dt class="label">Program</dt><dd>B.S. Industrial &amp; Systems Engineering, Mississippi State</dd></div>
+        <div><dt class="label">Focus</dt><dd>Data Analytics · Graduates Dec 2027</dd></div>
+        <div><dt class="label">Seeking</dt><dd>Summer 2027 internship · Spring 2027 co-op</dd></div>
+        <div><dt class="label">Location</dt><dd>Open to relocating anywhere in the U.S.</dd></div>
+      </dl>
     </div>
   </div>
 
-  <section class="block" id="projects" aria-labelledby="projects-h">
+  <section class="block first" id="projects" aria-labelledby="projects-h">
     <div class="wrap">
       <div class="section-head">
         <h2 id="projects-h">Projects</h2>
-        <p>Course, personal, and business projects. Open a card to read the full case study.</p>
+        <p>Course, personal, and business projects. Open a card for the full case study.</p>
       </div>
 
       <div class="projects">
@@ -430,31 +414,29 @@ footer .label { font-size: 0.6875rem; }
     </div>
   </section>
 
-  <section class="block" id="about" aria-labelledby="about-h">
+  <section class="block compact" id="about" aria-labelledby="about-h">
     <div class="wrap about-grid">
       <div class="about-copy">
-        <h2 id="about-h">About me</h2>
-        <p>I'm an Industrial &amp; Systems Engineering student at Mississippi State University with a focus in data analytics, graduating in December 2027. I was named a President's Scholar in Fall 2025 and Spring 2026. Before MSU, I completed aerospace engineering coursework at Embry-Riddle Aeronautical University, where I was a member of the Formula SAE team.</p>
-        <p>Outside of class, I ran a small business making sports-themed wall art on a CNC router I built myself, and I'm currently building a self-balancing cube.</p>
+        <h2 id="about-h">About</h2>
+        <p>ISE student at Mississippi State with a focus in data analytics and a President's Scholar in Fall 2025 and Spring 2026. Before MSU, I took aerospace engineering coursework at Embry-Riddle and was on the Formula SAE team. Outside class, I ran a small wall-art business on a CNC router I built, and I'm building a self-balancing cube. I speak English and Spanish.</p>
       </div>
       <dl class="skills">
-        <div><dt class="label">Data &amp; analysis</dt><dd>Power BI (DAX, data modeling, dashboards), Excel (PivotTables, data cleaning), SQL, Microsoft Access, Minitab, MATLAB</dd></div>
-        <div><dt class="label">Statistics</dt><dd>Root cause analysis, hypothesis testing, regression, ANOVA, design of experiments, forecasting</dd></div>
-        <div><dt class="label">IE &amp; lean</dt><dd>Time study and BasicMOST, standard times, value stream mapping, Kaizen, 5S, standard work</dd></div>
-        <div><dt class="label">Design &amp; build</dt><dd>Fusion 360 (CAD/CAM), CNC router setup and operation, G-code, 3D printing, Arduino and ESP32</dd></div>
-        <div><dt class="label">Certifications</dt><dd>Certificate in Data Analysis (Sep 2026) · Google Advanced Data Analytics Professional Certificate (in progress, expected Spring 2027)</dd></div>
+        <div><dt class="label">Data</dt><dd>Power BI (DAX, data modeling), Excel, SQL, Access, Minitab, MATLAB</dd></div>
+        <div><dt class="label">Statistics</dt><dd>Root cause analysis, hypothesis testing, regression, ANOVA, DOE, forecasting</dd></div>
+        <div><dt class="label">IE &amp; lean</dt><dd>Time study, BasicMOST, standard times, value stream mapping, Kaizen, 5S</dd></div>
+        <div><dt class="label">Design &amp; build</dt><dd>Fusion 360 (CAD/CAM), CNC, G-code, 3D printing, Arduino/ESP32</dd></div>
+        <div><dt class="label">Certifications</dt><dd>Certificate in Data Analysis (Sep 2026) · Google Advanced Data Analytics (in progress)</dd></div>
       </dl>
     </div>
   </section>
 
-  <section class="block" id="contact" aria-labelledby="contact-h">
+  <section class="block compact" id="contact" aria-labelledby="contact-h">
     <div class="wrap contact">
       <div>
         <h2 id="contact-h">Let's talk</h2>
-        <p>I'm looking for Summer 2027 internships and Spring 2027 co-ops, and I'm open to relocating anywhere in the U.S. Email is the best way to reach me.</p>
+        <p>Looking for Summer 2027 internships and Spring 2027 co-ops. Email is the best way to reach me.</p>
       </div>
       <div class="email-box">
-        <div class="label">Email</div>
         <div class="email-line">
           <span class="email-addr" id="email-addr">diegoh1548@gmail.com</span>
           <button type="button" class="copy-btn" id="copy-email">Copy</button>
