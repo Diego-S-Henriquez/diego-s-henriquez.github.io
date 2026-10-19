@@ -37,3 +37,53 @@
     });
   }
 })();
+
+// Click a case-study image or clip to view it large, without leaving the page.
+(function () {
+  var shots = document.querySelectorAll('.figure .shot');
+  if (!shots.length || typeof HTMLDialogElement === 'undefined') return;
+  var dlg = document.createElement('dialog');
+  dlg.className = 'lb';
+  dlg.setAttribute('aria-label', 'Enlarged image');
+  dlg.innerHTML = '<button class="lb-close" type="button">Close ✕</button><div class="lb-body"></div><p class="lb-cap"></p>';
+  document.body.appendChild(dlg);
+  var body = dlg.querySelector('.lb-body'), cap = dlg.querySelector('.lb-cap');
+  function close() { dlg.close(); }
+  dlg.addEventListener('close', function () { body.innerHTML = ''; });
+  dlg.querySelector('.lb-close').addEventListener('click', close);
+  dlg.addEventListener('click', function (e) { if (e.target === dlg || e.target === body) close(); });
+  shots.forEach(function (shot) {
+    shot.addEventListener('click', function (e) {
+      e.preventDefault();
+      var img = shot.querySelector('img'), vid = shot.querySelector('video'), el;
+      if (vid) {
+        el = document.createElement('video');
+        el.src = vid.currentSrc || vid.src; el.muted = true; el.loop = true; el.autoplay = true;
+        el.playsInline = true; el.controls = true;
+      } else if (img) {
+        el = document.createElement('img');
+        el.src = shot.getAttribute('href') || img.src; el.alt = img.alt;
+      } else { return; }
+      el.className = 'lb-media';
+      body.innerHTML = ''; body.appendChild(el);
+      var fc = shot.parentNode.querySelector('figcaption');
+      cap.textContent = fc ? fc.textContent.replace(/\s*Click to enlarge\.?$/, '') : '';
+      dlg.showModal();
+    });
+  });
+})();
+
+// Home page: dashboard card plays its clip on hover.
+(function () {
+  document.querySelectorAll('.thumb.media').forEach(function (thumb) {
+    var vid = thumb.querySelector('video'), card = thumb.closest('.card') || thumb;
+    if (!vid || !window.matchMedia('(hover: hover)').matches) return;
+    card.addEventListener('mouseenter', function () {
+      var p = vid.play(); thumb.classList.add('is-playing');
+      if (p && p.catch) p.catch(function () { thumb.classList.remove('is-playing'); });
+    });
+    card.addEventListener('mouseleave', function () {
+      vid.pause(); vid.currentTime = 0; thumb.classList.remove('is-playing');
+    });
+  });
+})();

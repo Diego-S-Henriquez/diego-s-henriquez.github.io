@@ -286,3 +286,32 @@ body:has(article.case) footer {
   color: var(--ink);
 }
 body:has(article.case) .site-header { background: #ffffff; }
+
+/* Home card with a dashboard still that plays the clip on hover */
+.thumb.media { padding: 0; background: #0f151b; overflow: hidden; }
+.thumb.media img, .thumb.media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.thumb.media video { opacity: 0; transition: opacity 200ms ease; }
+.thumb.media.is-playing video { opacity: 1; }
+.play-hint { position: absolute; right: 10px; bottom: 10px; font-family: var(--font-mono); font-size: 0.6875rem; color: #e5eaee; background: rgba(15, 21, 27, 0.8); border: 1px solid #2a3641; padding: 3px 8px; border-radius: 3px; transition: opacity 200ms ease; }
+.thumb.media.is-playing .play-hint { opacity: 0; }
+@media (hover: none) { .play-hint { display: none; } }
+
+/* STAR summary near the top of a case study */
+.star { margin-top: 44px; }
+.star h2 { font-size: var(--step-2); font-weight: 700; margin-bottom: 14px; }
+.star-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.star-item { background: var(--surface); padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 8px; }
+.star-k { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--signal); }
+.star-item p { font-size: 0.9375rem; line-height: 1.55; }
+@media (max-width: 960px) { .star-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .star-grid { grid-template-columns: 1fr; } }
+.full-title { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--line); font-size: var(--step-3); font-weight: 700; }
+.full-title + .case-body { margin-top: 28px; }
+
+/* Click-to-enlarge */
+.figure .shot { cursor: zoom-in; }
+.lb { border: 0; padding: 0; margin: auto; max-width: 96vw; max-height: 94vh; background: transparent; color: #e5eaee; overflow: visible; }
+.lb::backdrop { background: rgba(5, 8, 11, 0.88); }
+.lb-media { display: block; max-width: 96vw; max-height: 86vh; width: auto; height: auto; border-radius: 6px; border: 1px solid #2a3641; background: #0f151b; }
+.lb-cap { margin-top: 10px; font-size: 0.875rem; color: #9aa7b2; max-width: 96vw; }
+.lb-close { position: fixed; top: 14px; right: 16px; font: inherit; font-size: 0.875rem; font-weight: 600; color: #0f151b; background: #e5eaee; border: 0; border-radius: 6px; padding: 7px 12px; cursor: pointer; }
