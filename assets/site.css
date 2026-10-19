@@ -266,3 +266,23 @@ footer .label { font-size: 0.6875rem; }
 .projects.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 @media (max-width: 600px) { .projects.cols-2 { grid-template-columns: 1fr; } }
 .figure .shot video { display: block; width: 100%; height: auto; }
+
+/* Project pages: dark content, light header (header keeps the light tokens) */
+body:has(article.case) { background: #0f151b; }
+body:has(article.case) main,
+body:has(article.case) footer {
+  --paper: #0f151b;
+  --surface: #151d25;
+  --ink: #e5eaee;
+  --muted: #9aa7b2;
+  --line: #2a3641;
+  --grid: rgba(229, 234, 238, 0.06);
+  --accent: #86abe6;
+  --accent-ink: #0f151b;
+  --signal: #f0b443;
+  --signal-soft: rgba(240, 180, 67, 0.14);
+  color-scheme: dark;
+  background: var(--paper);
+  color: var(--ink);
+}
+body:has(article.case) .site-header { background: #ffffff; }
