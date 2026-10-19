@@ -94,7 +94,16 @@ p { margin: 0; }
 
 /* ---------- compact intro ---------- */
 .intro { padding-block: 36px 8px; }
-.intro h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; font-stretch: 118%; }
+.intro h1 { font-size: clamp(1.75rem, 3.6vw, 2.375rem); font-weight: 800; font-stretch: 118%; }
+.intro-grid { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.intro-copy { min-width: 0; }
+.intro .lede { max-width: none; }
+.intro .lede .line { display: block; }
+@media (min-width: 1000px) { .intro .lede .line { white-space: nowrap; } }
+.avatar { flex: none; width: 148px; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center;
+  background: var(--surface); border: 1.5px dashed var(--line); color: var(--muted);
+  font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; }
+@media (max-width: 560px) { .intro-grid { flex-direction: column-reverse; align-items: flex-start; gap: 16px; } .avatar { width: 88px; } }
 .lede { margin-top: 10px; font-size: var(--step-1); color: var(--muted); max-width: 62ch; }
 
 /* ---------- sections ---------- */
@@ -203,6 +212,7 @@ footer .label { font-size: 0.6875rem; }
 .back { display: inline-flex; gap: 6px; font-weight: 600; font-size: 0.9375rem; text-decoration: none; }
 .case-head { margin-top: 24px; max-width: 860px; }
 .case-head h1 { font-size: clamp(1.875rem, 4.6vw, 3rem); font-weight: 800; margin-block: 12px 16px; }
+@media (min-width: 900px) { .case-head { max-width: none; } .case-head h1 { white-space: nowrap; font-size: min(2.625rem, 3.2vw); } .case-head .lede { max-width: 64ch; } }
 .case-head .lede { max-width: 64ch; margin-top: 0; }
 .case-head .tags { margin-top: 18px; }
 
