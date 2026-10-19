@@ -25,22 +25,9 @@
 
   --radius: 6px;
   --wrap: 1120px;
+  color-scheme: light;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper: #0f151b;
-    --surface: #151d25;
-    --ink: #e5eaee;
-    --muted: #9aa7b2;
-    --line: #2a3641;
-    --grid: rgba(229, 234, 238, 0.06);
-    --accent: #86abe6;
-    --accent-ink: #0f151b;
-    --signal: #f0b443;
-    --signal-soft: rgba(240, 180, 67, 0.14);
-    color-scheme: dark;
-  }
-}
+/* Always light. The dark palette below is kept for reference and only applies if data-theme="dark" is set. */
 :root[data-theme="dark"] {
   --paper: #0f151b;
   --surface: #151d25;
