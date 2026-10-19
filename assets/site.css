@@ -124,7 +124,7 @@ section.block.compact h2 { font-size: var(--step-2); }
 .card:hover { transform: translateY(-2px); border-color: var(--accent); box-shadow: 0 8px 24px -16px color-mix(in srgb, var(--ink) 60%, transparent); }
 .thumb {
   position: relative;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 16 / 9;
   max-width: 100%;
   border-bottom: 1px solid var(--line);
   background-color: var(--paper);
@@ -289,7 +289,7 @@ body:has(article.case) .site-header { background: #ffffff; }
 
 /* Home card with a dashboard still that plays the clip on hover */
 .thumb.media { padding: 0; background: #0f151b; overflow: hidden; }
-.thumb.media img, .thumb.media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.thumb.media img, .thumb.media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .thumb.media video { opacity: 0; transition: opacity 200ms ease; }
 .thumb.media.is-playing video { opacity: 1; }
 .play-hint { position: absolute; right: 10px; bottom: 10px; font-family: var(--font-mono); font-size: 0.6875rem; color: #e5eaee; background: rgba(15, 21, 27, 0.8); border: 1px solid #2a3641; padding: 3px 8px; border-radius: 3px; transition: opacity 200ms ease; }
