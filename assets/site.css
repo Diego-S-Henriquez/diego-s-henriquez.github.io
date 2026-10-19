@@ -39,6 +39,7 @@
   --accent-ink: #0f151b;
   --signal: #f0b443;
   --signal-soft: rgba(240, 180, 67, 0.14);
+  --k-tool: #86abe6; --k-analysis: #5ec7b9; --k-ie: #b39cf0; --k-build: #f08aa8;
   color-scheme: dark;
 }
 
@@ -156,11 +157,19 @@ section.block.compact h2 { font-size: var(--step-2); }
 .card-body p { color: var(--muted); font-size: 0.9375rem; }
 .facts { margin: 4px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 5px; }
 .facts li { position: relative; padding-left: 14px; font-size: 0.8125rem; line-height: 1.45; color: var(--ink); }
-.facts li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 6px; height: 1.5px; background: var(--muted); }
+.facts li { padding-left: 16px; }
+.facts li::before { content: "→"; position: absolute; left: 0; top: 0; font-size: 0.75rem; line-height: inherit; color: var(--accent); }
 .card-foot { margin-top: auto; padding-top: 10px; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .tag { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.03em; padding: 3px 8px; border-radius: 3px; background: color-mix(in srgb, var(--ink) 7%, transparent); color: var(--ink); white-space: nowrap; }
 .tag.wip { background: var(--signal-soft); color: var(--signal); }
+/* Skill chips colored by kind: tools, analysis, IE methods, build. Same colors on every page. */
+:root { --k-tool: #1f55a1; --k-analysis: #0f766e; --k-ie: #6d3fc4; --k-build: #b42357; }
+.tag[class*="k-"] { color: var(--k); background: color-mix(in srgb, var(--k) 11%, transparent); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--k) 26%, transparent); }
+.tag.k-tool { --k: var(--k-tool); }
+.tag.k-analysis { --k: var(--k-analysis); }
+.tag.k-ie { --k: var(--k-ie); }
+.tag.k-build { --k: var(--k-build); }
 .status { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--accent); font-weight: 500; white-space: nowrap; }
 
 /* six-station flow (bottleneck project) */
@@ -212,7 +221,7 @@ footer .label { font-size: 0.6875rem; }
 .back { display: inline-flex; gap: 6px; font-weight: 600; font-size: 0.9375rem; text-decoration: none; }
 .case-head { margin-top: 24px; max-width: 860px; }
 .case-head h1 { font-size: clamp(1.875rem, 4.6vw, 3rem); font-weight: 800; margin-block: 12px 16px; }
-@media (min-width: 900px) { .case-head { max-width: none; } .case-head h1 { white-space: nowrap; font-size: min(2.625rem, 3.2vw); } .case-head .lede { max-width: 64ch; } }
+@media (min-width: 900px) { .case-head { max-width: none; } .case-head h1.one-line { white-space: nowrap; font-size: min(2.625rem, 3.2vw); } .case-head .lede { max-width: 64ch; } }
 .case-head .lede { max-width: 64ch; margin-top: 0; }
 .case-head .tags { margin-top: 18px; }
 
@@ -291,6 +300,7 @@ body:has(article.case) footer {
   --accent-ink: #0f151b;
   --signal: #f0b443;
   --signal-soft: rgba(240, 180, 67, 0.14);
+  --k-tool: #86abe6; --k-analysis: #5ec7b9; --k-ie: #b39cf0; --k-build: #f08aa8;
   color-scheme: dark;
   background: var(--paper);
   color: var(--ink);
