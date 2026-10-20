@@ -59,11 +59,7 @@
           </section>
           <section>
             <h2>Key DAX measures</h2>
-            <p>Three of the measures behind the dashboard, copied from the Power BI file.</p><h3>Downtime %, corrected</h3><p>My original measure divided downtime by one 8-hour shift per day plus the downtime itself, which overstated it: Drilling showed 22.98%. Each production row is one workstation on one 8-hour shift, so the fix divides by scheduled time instead, and Drilling's real figure is 14.9%.</p><div class="dax"><div class="dax-label">Before</div><pre><code>Downtime % =
-<span class="dx-f">DIVIDE</span> (
-    <span class="dx-m">[Total_Downtime_Min]</span>,
-    <span class="dx-m">[Total_Downtime_Min]</span> + ( <span class="dx-f">DISTINCTCOUNT</span> ( <span class="dx-col">ProductionData[Date]</span> ) * <span class="dx-n">480</span> )
-)</code></pre></div><div class="dax"><div class="dax-label">After</div><pre><code>Scheduled_Min = <span class="dx-f">COUNTROWS</span> ( ProductionData ) * <span class="dx-n">480</span>
+            <p>Three of the measures behind the dashboard, copied from the Power BI file.</p><h3>Downtime % of scheduled time</h3><p>Each production row is one workstation on one 8-hour shift, so scheduled minutes are the row count times 480. Downtime is measured against that.</p><div class="dax"><pre><code>Scheduled_Min = <span class="dx-f">COUNTROWS</span> ( ProductionData ) * <span class="dx-n">480</span>
 
 Downtime % = <span class="dx-f">DIVIDE</span> ( <span class="dx-m">[Total_Downtime_Min]</span>, <span class="dx-m">[Scheduled_Min]</span> )</code></pre></div><h3>OEE from its three parts</h3><p>Availability is run time over scheduled time. Performance compares the ideal run time at each station's standard cycle time with the time it actually ran. Quality is good units over total units. OEE multiplies the three, which shows <em>why</em> a station is behind, not just that it is.</p><div class="dax"><pre><code>Availability = <span class="dx-f">DIVIDE</span> ( <span class="dx-m">[Scheduled_Min]</span> - <span class="dx-m">[Total_Downtime_Min]</span>, <span class="dx-m">[Scheduled_Min]</span> )
 
