@@ -387,3 +387,10 @@ body:has(article.case) .site-header { background: #ffffff; }
   .spec { position: static; }
   .prose .figure.wide { width: calc(100% + 240px + 56px); margin-left: calc(-240px - 56px); max-width: none; }
 }
+
+/* Icon bullets (recommendations) */
+.prose .icon-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px; }
+.icon-list li { display: grid; grid-template-columns: 38px minmax(0, 1fr); gap: 14px; align-items: start; }
+.il-ic { width: 38px; height: 38px; border-radius: 9px; display: grid; place-items: center; color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 13%, transparent); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 28%, transparent); }
+.icon-list li > div { padding-top: 7px; }
