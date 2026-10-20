@@ -14,25 +14,27 @@
     }, { rootMargin: '-60px 0px 0px 0px' }).observe(nameH);
   }
 
-  // Copy email button.
+  // Copy email button (keeps its icon; only the label changes).
   var btn = document.getElementById('copy-email');
   var addr = document.getElementById('email-addr');
   if (btn && addr) {
+    var label = btn.querySelector('.copy-label') || btn;
     btn.addEventListener('click', function () {
       var text = addr.textContent.trim();
+      var done = function (msg) {
+        label.textContent = msg; btn.classList.add('is-done');
+        setTimeout(function () { label.textContent = 'Copy'; btn.classList.remove('is-done'); }, 1800);
+      };
       var selectFallback = function () {
         var range = document.createRange();
         range.selectNodeContents(addr);
         var sel = window.getSelection();
         sel.removeAllRanges();
         sel.addRange(range);
-        btn.textContent = 'Selected';
+        done('Selected');
       };
       try {
-        navigator.clipboard.writeText(text).then(function () {
-          btn.textContent = 'Copied';
-          setTimeout(function () { btn.textContent = 'Copy'; }, 1800);
-        }, selectFallback);
+        navigator.clipboard.writeText(text).then(function () { done('Copied'); }, selectFallback);
       } catch (e) { selectFallback(); }
     });
   }
