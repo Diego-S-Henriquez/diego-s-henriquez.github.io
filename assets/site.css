@@ -381,3 +381,9 @@ body:has(article.case) .site-header { background: #ffffff; }
 .dx-k { color: var(--k-build, #f08aa8); font-weight: 600; }
 .dx-c, .dx-n { color: var(--muted); }
 @media (max-width: 560px) { .dax pre { font-size: 0.75rem; padding-inline: 12px; } }
+
+/* Wide figures: on desktop, charts span the full page width (under the details column) so labels stay readable */
+@media (min-width: 861px) {
+  .spec { position: static; }
+  .prose .figure.wide { width: calc(100% + 240px + 56px); margin-left: calc(-240px - 56px); max-width: none; }
+}
