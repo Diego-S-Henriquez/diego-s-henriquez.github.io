@@ -87,3 +87,18 @@
     });
   });
 })();
+
+// Contact pop-up: the header's Contact button opens it; ✕, Esc or a click outside closes it.
+(function () {
+  var dlg = document.getElementById('contact');
+  if (!dlg || typeof dlg.showModal !== 'function') return;
+  function open(e) { if (e) e.preventDefault(); if (!dlg.open) dlg.showModal(); }
+  document.querySelectorAll('a[href="#contact"]').forEach(function (a) { a.addEventListener('click', open); });
+  dlg.querySelector('.contact-close').addEventListener('click', function () { dlg.close(); });
+  dlg.addEventListener('click', function (e) {
+    var r = dlg.getBoundingClientRect();
+    var inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+    if (!inside) dlg.close();
+  });
+  if (location.hash === '#contact') open();
+})();

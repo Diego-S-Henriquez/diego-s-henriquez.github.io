@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
-<link rel="stylesheet" href="/assets/site.css?v=b20dca1d">
+<link rel="stylesheet" href="/assets/site.css?v=d0b4cf9c">
 </head>
 <body>
 <header class="site-header">
@@ -20,7 +20,7 @@
       <a href="/#projects" class="hide-xs">Projects</a>
       <a href="/#about" class="hide-sm">About</a>
       <a href="/assets/Diego_Henriquez_Resume.pdf" class="nav-ghost" target="_blank" rel="noopener">Resume</a>
-      <a href="#contact" class="nav-cta">Contact</a>
+      <a href="#contact" class="nav-cta" aria-haspopup="dialog">Contact</a>
     </nav>
   </div>
 </header>
@@ -100,8 +100,9 @@ OEE = <span class="dx-m">[Availability]</span> * <span class="dx-m">[Performance
     </div>
   </article>
 
-  <section class="block compact" id="contact" aria-labelledby="contact-h">
-    <div class="wrap contact">
+  <dialog class="contact-dlg" id="contact" aria-labelledby="contact-h">
+    <button type="button" class="contact-close" aria-label="Close">✕</button>
+    <div class="contact">
       <div>
         <h2 id="contact-h">Let's talk</h2>
         <p>Looking for Summer 2027 internships and Spring 2027 co-ops, and open to relocating anywhere in the U.S. Email is the best way to reach me.</p>
@@ -117,7 +118,7 @@ OEE = <span class="dx-m">[Availability]</span> * <span class="dx-m">[Performance
         </div>
       </div>
     </div>
-  </section>
+  </dialog>
 </main>
 <footer>
   <div class="wrap">
@@ -125,6 +126,6 @@ OEE = <span class="dx-m">[Availability]</span> * <span class="dx-m">[Performance
     <a class="label" href="https://www.linkedin.com/in/diego-s-henriquez" target="_blank" rel="noopener">LinkedIn ↗</a>
   </div>
 </footer>
-<script src="/assets/site.js?v=ea1b6db3"></script>
+<script src="/assets/site.js?v=a257764f"></script>
 </body>
 </html>
