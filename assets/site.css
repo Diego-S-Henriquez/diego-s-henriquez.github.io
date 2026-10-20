@@ -384,10 +384,7 @@ body:has(article.case) .site-header { background: rgba(15, 21, 27, 0.92); }
 @media (max-width: 560px) { .dax pre { font-size: 0.75rem; padding-inline: 12px; } }
 
 /* Wide figures: on desktop, charts span the full page width (under the details column) so labels stay readable */
-@media (min-width: 861px) {
-  .spec { position: static; }
-  .prose .figure.wide { width: calc(100% + 240px + 56px); margin-left: calc(-240px - 56px); max-width: none; }
-}
+
 
 /* Icon bullets (recommendations) */
 .prose .icon-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px; }
@@ -435,3 +432,13 @@ body:has(article.case) .site-header { background: rgba(15, 21, 27, 0.92); }
 .dax-toggle[open] > summary { margin-bottom: 4px; }
 .prose section > .dax-toggle { max-width: none; }
 .dax-toggle > p { max-width: 68ch; }
+
+/* Project pages: one column. Details sit in a row above the write-up, and headings,
+   text and pictures share one left edge. Text keeps a reading width; pictures use the full width. */
+.case-body { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+.spec { position: static; border-top: 1.5px solid var(--ink); border-bottom: 1px solid var(--line); }
+.spec dl { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 32px; }
+.spec div { border-bottom: 0; padding-block: 14px; }
+@media (max-width: 860px) { .spec dl { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 460px) { .spec dl { grid-template-columns: minmax(0, 1fr); } .spec div + div { border-top: 1px solid var(--line); } }
+.full-title + .case-body { margin-top: 20px; }
