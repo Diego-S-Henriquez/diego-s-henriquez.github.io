@@ -58,6 +58,33 @@
             <ul><li>Wrote DAX measures for Unit Target %, Scrap Rate, Downtime %, OEE and its three parts (availability, performance, quality), Units per Labor Hour, and a measure that finds the lowest-OEE workstation.</li><li>Built a one-page interactive dashboard with KPI cards, output vs. downtime by workstation, downtime by cause, a monthly target trend, a shift comparison, and an OEE breakdown table.</li><li>Wrote a one-page executive summary with findings and recommendations for plant leadership.</li><li>Revisited the model after the course: corrected the downtime measure to count scheduled time on both shifts, and added the OEE breakdown.</li></ul>
           </section>
           <section>
+            <h2>Key DAX measures</h2>
+            <p>Three of the measures behind the dashboard, copied from the Power BI file.</p><h3>Downtime %, corrected</h3><p>My original measure divided downtime by one 8-hour shift per day plus the downtime itself, which overstated it: Drilling showed 22.98%. Each production row is one workstation on one 8-hour shift, so the fix divides by scheduled time instead, and Drilling's real figure is 14.9%.</p><div class="dax"><div class="dax-label">Before</div><pre><code>Downtime % =
+<span class="dx-f">DIVIDE</span> (
+    <span class="dx-m">[Total_Downtime_Min]</span>,
+    <span class="dx-m">[Total_Downtime_Min]</span> + ( <span class="dx-f">DISTINCTCOUNT</span> ( <span class="dx-col">ProductionData[Date]</span> ) * <span class="dx-n">480</span> )
+)</code></pre></div><div class="dax"><div class="dax-label">After</div><pre><code>Scheduled_Min = <span class="dx-f">COUNTROWS</span> ( ProductionData ) * <span class="dx-n">480</span>
+
+Downtime % = <span class="dx-f">DIVIDE</span> ( <span class="dx-m">[Total_Downtime_Min]</span>, <span class="dx-m">[Scheduled_Min]</span> )</code></pre></div><h3>OEE from its three parts</h3><p>Availability is run time over scheduled time. Performance compares the ideal run time at each station's standard cycle time with the time it actually ran. Quality is good units over total units. OEE multiplies the three, which shows <em>why</em> a station is behind, not just that it is.</p><div class="dax"><pre><code>Availability = <span class="dx-f">DIVIDE</span> ( <span class="dx-m">[Scheduled_Min]</span> - <span class="dx-m">[Total_Downtime_Min]</span>, <span class="dx-m">[Scheduled_Min]</span> )
+
+Performance =
+<span class="dx-f">DIVIDE</span> (
+    <span class="dx-f">SUMX</span> (
+        ProductionData,
+        <span class="dx-col">ProductionData[Units_Produced]</span>
+            * <span class="dx-f">RELATED</span> ( <span class="dx-col">WorkstationInfo[Standard_Cycle_Time_Seconds]</span> )
+    ) / <span class="dx-n">60</span>,
+    <span class="dx-m">[Scheduled_Min]</span> - <span class="dx-m">[Total_Downtime_Min]</span>
+)
+
+Quality = <span class="dx-f">DIVIDE</span> ( <span class="dx-f">SUM</span> ( <span class="dx-col">ProductionData[Good_Units]</span> ), <span class="dx-m">[Total_Units_Produced]</span> )
+
+OEE = <span class="dx-m">[Availability]</span> * <span class="dx-m">[Performance]</span> * <span class="dx-m">[Quality]</span></code></pre></div><h3>Finding the bottleneck automatically</h3><p>Scores every workstation's OEE in the current filter context and returns the lowest, so the KPI card names the constraint on its own and updates when you filter by shift.</p><div class="dax"><pre><code>Lowest OEE Station =
+<span class="dx-k">VAR</span> t = <span class="dx-f">ADDCOLUMNS</span> ( <span class="dx-f">VALUES</span> ( <span class="dx-col">WorkstationInfo[Process_Name]</span> ), <span class="dx-s">&quot;@oee&quot;</span>, <span class="dx-m">[OEE]</span> )
+<span class="dx-k">VAR</span> worst = <span class="dx-f">TOPN</span> ( <span class="dx-n">1</span>, t, <span class="dx-m">[@oee]</span>, <span class="dx-k">ASC</span> )
+<span class="dx-k">RETURN</span> <span class="dx-f">MAXX</span> ( worst, <span class="dx-col">WorkstationInfo[Process_Name]</span> &amp; <span class="dx-s">&quot;: &quot;</span> &amp; <span class="dx-f">FORMAT</span> ( <span class="dx-m">[@oee]</span>, <span class="dx-s">&quot;0.0%&quot;</span> ) )</code></pre></div>
+          </section>
+          <section>
             <h2>Findings</h2>
             <figure class="figure"><a class="shot" href="/assets/img/bottleneck-target-vs-downtime.webp" target="_blank" rel="noopener" aria-label="Open full-size image"><img src="/assets/img/bottleneck-target-vs-downtime.webp" width="3432" height="1242" alt="Bar chart of unit target attainment and downtime percentage by workstation, next to stacked columns of downtime minutes by cause" loading="lazy" decoding="async"></a><figcaption>Drilling has the lowest target attainment and the most downtime, led by machine faults and material shortages.</figcaption></figure><ul><li>Drilling was the bottleneck, reaching 83.9% of its unit target while the other workstations ranged from 95.2% to 104.0%. It was the lowest station in every month and on both shifts, so the gap was systemic, not a one-time disruption.</li><li>Scrap was ruled out: 1.9% at Drilling vs. 1.2–1.5% elsewhere is far too small to explain the gap.</li><li>The main cause was downtime. Drilling was down 14.9% of its scheduled time, compared with 9.3% at Inspection, the next highest. Machine faults were the largest cause, at 2.6 times the machine-fault downtime of the next-highest station, and material-shortage downtime was more than four times any other station's.</li><li>Slower cycles were a second factor. Drilling's cycles averaged 56.1 seconds against a 52-second standard, about 8% slow, while every other station ran within 2% of standard.</li><li>OEE put it in one number: 75.4% at Drilling, the lowest in the plant (85.7–93.5% elsewhere), with availability at 85.1%, performance at 90.3%, and quality at 98.1%.</li></ul><figure class="figure"><a class="shot" href="/assets/img/bottleneck-oee.webp" target="_blank" rel="noopener" aria-label="Open full-size image"><img src="/assets/img/bottleneck-oee.webp" width="2884" height="1240" alt="KPI cards and a table of availability, performance, quality, and OEE for each workstation" loading="lazy" decoding="async"></a><figcaption>Breaking OEE into its parts shows where Drilling loses output: mostly downtime, then slower cycles, with scrap a minor factor.</figcaption></figure>
           </section>
