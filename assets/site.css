@@ -530,3 +530,11 @@ dialog.contact-dlg::backdrop { background: rgba(5, 8, 11, 0.6); }
 /* On narrow screens charts keep a readable size and scroll sideways inside their box */
 .chart-fig .chart-box { overflow-x: auto; }
 @media (max-width: 700px) { .chart { min-width: 640px; } }
+
+/* Two photos side by side */
+.figure.pair .pair-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.figure.pair .shot { display: block; }
+.figure.pair img { display: block; width: 100%; height: auto; border-radius: var(--radius); }
+@media (max-width: 520px) { .figure.pair .pair-grid { grid-template-columns: 1fr; } }
+/* Pictures of the Excel workbook sit on white, like the sheet itself */
+.figure.xl .shot { background: #fff; }
