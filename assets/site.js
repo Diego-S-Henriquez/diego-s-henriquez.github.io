@@ -104,3 +104,44 @@
   });
   if (location.hash === '#contact') open();
 })();
+
+// Wide Excel sheets: the first time the box comes into view, it scrolls to the far right and back once,
+// so readers can tell there is more to the side. Any touch, click or wheel by the reader stops it.
+(function () {
+  if (!('IntersectionObserver' in window)) return;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function ease(t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
+  document.querySelectorAll('.xl-scroll .xl-box').forEach(function (box) {
+    var stopped = false;
+    ['pointerdown', 'wheel', 'touchstart', 'keydown'].forEach(function (ev) {
+      box.addEventListener(ev, function () { stopped = true; }, { passive: true });
+    });
+    function glide(from, to, ms, done) {
+      var t0 = null;
+      function step(ts) {
+        if (stopped) return;
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0) / ms);
+        box.scrollLeft = from + (to - from) * ease(p);
+        if (p < 1) requestAnimationFrame(step); else if (done) done();
+      }
+      requestAnimationFrame(step);
+    }
+    var io = new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting) return;
+      io.disconnect();
+      var max = box.scrollWidth - box.clientWidth;
+      if (max < 20) return;
+      // Reduced-motion setting: a short nudge instead of the full sweep.
+      var dist = reduce ? Math.min(max, 160) : max;
+      var out = reduce ? 500 : Math.min(2600, 900 + dist * 2.2);
+      setTimeout(function () {
+        if (stopped) return;
+        glide(0, dist, out, function () {
+          setTimeout(function () { if (!stopped) glide(dist, 0, reduce ? 450 : out * 0.7); }, reduce ? 250 : 600);
+        });
+      }, 400);
+    }, { threshold: 0.7 });
+    io.observe(box);
+  });
+})();
