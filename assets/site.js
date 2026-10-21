@@ -112,8 +112,6 @@
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function ease(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
   document.querySelectorAll('.xl-scroll .xl-box').forEach(function (box) {
-    // On phones the whole sheet (title block and table) scrolls together instead of just the table.
-    if (box.scrollWidth - box.clientWidth < 20) box = box.closest('.xl-sheet') || box;
     var max = box.scrollWidth - box.clientWidth;
     if (max < 20 || !('IntersectionObserver' in window)) return;
     var stopped = false;

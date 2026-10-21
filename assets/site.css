@@ -565,14 +565,13 @@ body:has(article.case.theme-light) footer { --paper: #ffffff; --surface: #f6f8fa
 .figure.pair-mixed .xl-shot img { border-radius: 0; }
 @media (max-width: 520px) { .figure.pair-mixed .pair-grid { grid-template-columns: 1fr !important; } }
 
-/* Wide data sheet: the title block stays put, the table below it scrolls. One frame around both. */
-.xl-scroll .xl-sheet { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: #fff; }
-.xl-scroll .xl-sheet .xl-head { border: 0; border-radius: 0; box-shadow: none; }
-.xl-scroll .xl-sheet .xl-box { border: 0; border-radius: 0; }
-.xl-scroll .xl-sheet .xl-box .shot { box-shadow: none; }
-/* Phones: the title block would shrink too small to read, so it scrolls with the table at the same scale. */
-@media (max-width: 640px) {
-  .xl-scroll .xl-sheet { overflow-x: auto; }
-  .xl-scroll .xl-sheet .xl-head { width: 940px; }
-  .xl-scroll .xl-sheet .xl-box { overflow: visible; width: max-content; }
-}
+/* Wide data sheet: the sheet's title, subtitle and headline numbers sit above it as page text; only the table scrolls. */
+.sheet-head { margin: 0 0 14px; }
+.sheet-head .sheet-title { font-size: 1.05rem; font-weight: 650; color: var(--ink); margin: 0 0 4px; line-height: 1.3; }
+.sheet-head .sheet-sub { font-size: 0.9rem; color: var(--muted); margin: 0 0 12px; line-height: 1.5; }
+.sheet-head .sheet-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+.sheet-head .sheet-stats li { border: 1px solid var(--line); border-radius: var(--radius); background: #fff; padding: 10px 14px; }
+.sheet-head .sheet-stats .k { display: block; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.sheet-head .sheet-stats .v { display: block; font-size: 1.35rem; font-weight: 650; color: var(--ink); margin-top: 2px; font-variant-numeric: tabular-nums; }
+.sheet-head .sheet-stats .v small { font-size: 0.8rem; font-weight: 500; color: var(--muted); margin-left: 3px; }
+@media (max-width: 520px) { .sheet-head .sheet-stats .v { font-size: 1.1rem; } .sheet-head .sheet-stats li { padding: 8px 10px; } }
