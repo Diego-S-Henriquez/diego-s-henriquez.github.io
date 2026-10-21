@@ -558,3 +558,9 @@ body:has(article.case.theme-light) { background: #ffffff; }
 body:has(article.case.theme-light) .site-header,
 body:has(article.case.theme-light) main,
 body:has(article.case.theme-light) footer { --paper: #ffffff; --surface: #f6f8fa; }
+
+/* Photo + Excel chart side by side, same height */
+.figure.pair-mixed .pair-grid { align-items: stretch; }
+.figure.pair-mixed .xl-shot { background: #fff; display: flex; align-items: center; }
+.figure.pair-mixed .xl-shot img { border-radius: 0; }
+@media (max-width: 520px) { .figure.pair-mixed .pair-grid { grid-template-columns: 1fr !important; } }
