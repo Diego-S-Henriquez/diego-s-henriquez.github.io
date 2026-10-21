@@ -287,10 +287,10 @@ footer .label { font-size: 0.6875rem; }
 .figure .shot video { display: block; width: 100%; height: auto; }
 
 /* Project pages: dark content and a matching dark header */
-body:has(article.case) { background: #0f151b; }
-body:has(article.case) .site-header,
-body:has(article.case) main,
-body:has(article.case) footer {
+body:has(article.case:not(.theme-light)) { background: #0f151b; }
+body:has(article.case:not(.theme-light)) .site-header,
+body:has(article.case:not(.theme-light)) main,
+body:has(article.case:not(.theme-light)) footer {
   --paper: #0f151b;
   --surface: #151d25;
   --ink: #e5eaee;
@@ -306,7 +306,7 @@ body:has(article.case) footer {
   background: var(--paper);
   color: var(--ink);
 }
-body:has(article.case) .site-header { background: rgba(15, 21, 27, 0.92); }
+body:has(article.case:not(.theme-light)) .site-header { background: rgba(15, 21, 27, 0.92); }
 
 /* Home card with a dashboard still that plays the clip on hover */
 .thumb.media { padding: 0; background: #0f151b; overflow: hidden; }
@@ -538,3 +538,23 @@ dialog.contact-dlg::backdrop { background: rgba(5, 8, 11, 0.6); }
 @media (max-width: 520px) { .figure.pair .pair-grid { grid-template-columns: 1fr; } }
 /* Pictures of the Excel workbook sit on white, like the sheet itself */
 .figure.xl .shot { background: #fff; }
+
+/* Light project page (time study): the header and page use the light palette, Excel pictures get a soft frame */
+body:has(article.case.theme-light) .figure.xl .shot { box-shadow: 0 1px 2px rgba(15, 21, 27, 0.06); }
+/* Excel pictures: exact size, centered, on white */
+.figure.xl .shot { display: block; background: #fff; }
+.figure.xl img { display: block; width: 100%; height: auto; }
+.xl-scroll .xl-box { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; }
+.xl-scroll .xl-box .shot { border: 0; width: max-content; }
+.xl-scroll .xl-box img { width: 1600px; max-width: none; }
+
+/* Home card: CAD render, switching to the real print on hover */
+.thumb.swap .swap-alt { opacity: 0; transition: opacity 350ms ease; }
+@media (hover: hover) { .card:hover .thumb.swap .swap-alt { opacity: 1; } }
+/* Excel pictures: an outline instead of a border, so the image keeps its exact width */
+.figure.xl .shot { border: 0; box-shadow: 0 0 0 1px var(--line); }
+/* White page for the time study, to match the workbook */
+body:has(article.case.theme-light) { background: #ffffff; }
+body:has(article.case.theme-light) .site-header,
+body:has(article.case.theme-light) main,
+body:has(article.case.theme-light) footer { --paper: #ffffff; --surface: #f6f8fa; }
