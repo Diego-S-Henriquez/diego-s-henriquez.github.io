@@ -578,3 +578,9 @@ body:has(article.case.theme-light) footer { --paper: #ffffff; --surface: #f6f8fa
 
 /* Home intro headshot (replaces the dashed placeholder). */
 .avatar.avatar-photo { display: block; height: auto; object-fit: cover; background: #2b2f33; border: 1px solid var(--line); padding: 0; }
+
+/* White case pages: code blocks and before/after tables get a light surface instead of the dark-page tint. */
+body:has(article.case.theme-light) .dax,
+body:has(article.case.theme-light) .dt { background: #f6f8fa; }
+body:has(article.case.theme-light) .dt-raw td.hl { background: #fbe4ec; }
+body:has(article.case.theme-light) .dt-clean td.hl { background: #dcf1ee; }
