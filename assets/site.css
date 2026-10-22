@@ -575,3 +575,6 @@ body:has(article.case.theme-light) footer { --paper: #ffffff; --surface: #f6f8fa
 .sheet-head .sheet-stats .v { display: block; font-size: 1.35rem; font-weight: 650; color: var(--ink); margin-top: 2px; font-variant-numeric: tabular-nums; }
 .sheet-head .sheet-stats .v small { font-size: 0.8rem; font-weight: 500; color: var(--muted); margin-left: 3px; }
 @media (max-width: 520px) { .sheet-head .sheet-stats .v { font-size: 1.1rem; } .sheet-head .sheet-stats li { padding: 8px 10px; } }
+
+/* Home intro headshot (replaces the dashed placeholder). */
+.avatar.avatar-photo { display: block; height: auto; object-fit: cover; background: #2b2f33; border: 1px solid var(--line); padding: 0; }
